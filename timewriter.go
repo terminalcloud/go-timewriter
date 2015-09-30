@@ -1,5 +1,5 @@
 // A wrapper over io.Writer to begin each line with a timestamp
-package timelogger
+package timewriter
 
 import (
 	"fmt"
@@ -8,21 +8,21 @@ import (
 )
 
 // A Writer that begins each line with a timestamp
-type TimeLogger struct {
+type TimeWriter struct {
 	w io.Writer
 }
 
-func New(w io.Writer) (*TimeLogger, error) {
+func New(w io.Writer) (*TimeWriter, error) {
 	// Begin the log with a timestamp
 	now := []byte(fmt.Sprintf("%s: ", time.Now().UTC().String()))
 	if _, err := w.Write(now); err != nil {
 		return nil, err
 	}
 
-	return &TimeLogger{w}, nil
+	return &TimeWriter{w}, nil
 }
 
-func (l *TimeLogger) Write(p []byte) (n int, err error) {
+func (l *TimeWriter) Write(p []byte) (n int, err error) {
 	now := []byte(fmt.Sprintf("%s: ", time.Now().UTC().String()))
 	i := 0
 

@@ -1,4 +1,4 @@
-package timelogger
+package timewriter
 
 import (
 	"errors"
@@ -44,7 +44,7 @@ func testBytes(t *testing.T, buf []byte) {
 		t.Fatalf("Write did not return the length of the passed buffer: %d/%d", n, len(buf))
 	}
 	if err != nil {
-		t.Fatalf("Write failted: %s", err)
+		t.Fatalf("Write failed: %s", err)
 	}
 
 	if err = m.Check(buf); err != nil {
